@@ -69,7 +69,10 @@ c1m2.out: main.o memory.o
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $^ -o $@ $(PLATFORMFLAG)
 %.i: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -E $^ -o $@ $(PLATFORMFLAG)
+%.asm: %.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -S $^ -o $@ $(PLATFORMFLAG)
+
 
 .PHONY: clean
 clean:
-	rm -f main.o memory.o c1m2.out
+	rm -f main.o memory.o c1m2.out main.i main.asm
