@@ -24,18 +24,30 @@
 include sources.mk
 
 # Platform Overrides
-PLATFORM = 
-
+#PLATFORM = 
 # Architectures Specific Flags
-LINKER_FILE = 
-CPU = 
-ARCH = 
-SPECS = 
+#LINKER_FILE = 
+#CPU = 
+#ARCH = 
+#SPECS = 
 
 # Compiler Flags and Defines
-CC = 
-LD = 
-LDFLAGS = 
-CFLAGS = 
-CPPFLAGs = 
+CC = gcc
+#LD = 
+#LDFLAGS = 
+#CFLAGS = 
+#CPPFLAGs = 
 
+build: all
+all:c1m2.out
+
+c1m2.out: main.o memory.o
+	$(CC) $^ -o $@
+
+main.o: main.c
+	$(CC) $(INCLUDES) -c $^ -o $@ -DHOST
+
+memory.o: memory.c
+	$(CC) $(INCLUDES) -c $^ -o $@ -DHOST
+clean:
+	rm -f main.o memory.o c1m2.out
